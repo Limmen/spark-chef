@@ -169,6 +169,23 @@ if (File.exist?("#{node['kagent']['certs_dir']}/cacerts.jks"))
     dest "/user/#{node['hadoop_spark']['user']}/#{hopsUtil}"
   end
 
+  hopsVerification=File.basename(node['hadoop_spark']['hopsverification']['url'])
+  remote_file "#{Chef::Config['file_cache_path']}/#{hopsVerification}" do
+    source node['hadoop_spark']['hopsverification']['url']
+    owner node['hadoop_spark']['user']
+    group node['hops']['group']
+    mode "1775"
+    action :create
+  end
+
+  hops_hdfs_directory "#{Chef::Config['file_cache_path']}/#{hopsVerification}" do
+    action :replace_as_superuser
+    owner node['hadoop_spark']['user']
+    group node['hops']['group']
+    mode "1755"
+    dest "/user/#{node['hadoop_spark']['user']}/#{hopsVerification}"
+  end
+
   hopsExamplesSpark=File.basename(node['hadoop_spark']['hopsexamples_spark']['url'])
   remote_file "#{Chef::Config['file_cache_path']}/#{hopsExamplesSpark}" do
     source node['hadoop_spark']['hopsexamples_spark']['url']
