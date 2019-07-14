@@ -111,7 +111,8 @@ default['hadoop_spark']['hopsverification']['url']                     = "#{node
 default['hadoop_spark']['hopsexamples_version']                = node['install']['version']
 default['hadoop_spark']['hopsexamples_spark']['url']          = "#{node['download_url']}/hopsexamples/#{node['hadoop_spark']['hopsexamples_version']}/hops-examples-spark-#{node['hadoop_spark']['hopsexamples_version']}.jar"
 default['hadoop_spark']['hopsexamples_hive']['url']           = "#{node['download_url']}/hopsexamples/#{node['hadoop_spark']['hopsexamples_version']}/hops-examples-hive-#{node['hadoop_spark']['hopsexamples_version']}.jar"
-default['hadoop_spark']['hopsexamples_featurestore']['url']   = "#{node['download_url']}/hopsexamples/#{node['hadoop_spark']['hopsexamples_version']}/hops-examples-featurestore-#{node['hadoop_spark']['hopsexamples_version']}.jar"
+default['hadoop_spark']['hopsexamples_featurestore_tour']['url']   = "#{node['download_url']}/hopsexamples/#{node['hadoop_spark']['hopsexamples_version']}/hops-examples-featurestore-tour-#{node['hadoop_spark']['hopsexamples_version']}.jar"
+default['hadoop_spark']['hopsexamples_featurestore_util']['url']   = "#{node['download_url']}/hopsexamples/#{node['hadoop_spark']['hopsexamples_version']}/hops-examples-featurestore-util4j-#{node['hadoop_spark']['hopsexamples_version']}.jar"
 
 #
 # Featurestore dependencies

@@ -203,21 +203,38 @@ if (File.exist?("#{node['kagent']['certs_dir']}/cacerts.jks"))
     dest "/user/#{node['hadoop_spark']['user']}/#{hopsExamplesSpark}"
   end
 
-  hopsExamplesFeaturestore=File.basename(node['hadoop_spark']['hopsexamples_featurestore']['url'])
-  remote_file "#{Chef::Config['file_cache_path']}/#{hopsExamplesFeaturestore}" do
-    source node['hadoop_spark']['hopsexamples_featurestore']['url']
+  hopsExamplesFeaturestoreTour=File.basename(node['hadoop_spark']['hopsexamples_featurestore_tour']['url'])
+  remote_file "#{Chef::Config['file_cache_path']}/#{hopsExamplesFeaturestoreTour}" do
+    source node['hadoop_spark']['hopsexamples_featurestore_tour']['url']
     owner node['hadoop_spark']['user']
     group node['hops']['group']
     mode "1775"
     action :create
   end
 
-  hops_hdfs_directory "#{Chef::Config['file_cache_path']}/#{hopsExamplesFeaturestore}" do
+  hops_hdfs_directory "#{Chef::Config['file_cache_path']}/#{hopsExamplesFeaturestoreTour}" do
     action :replace_as_superuser
     owner node['hadoop_spark']['user']
     group node['hops']['group']
     mode "1755"
-    dest "/user/#{node['hadoop_spark']['user']}/#{hopsExamplesFeaturestore}"
+    dest "/user/#{node['hadoop_spark']['user']}/#{hopsExamplesFeaturestoreTour}"
+  end
+
+  hopsExamplesFeaturestoreUtil=File.basename(node['hadoop_spark']['hopsexamples_featurestore_util']['url'])
+  remote_file "#{Chef::Config['file_cache_path']}/#{hopsExamplesFeaturestoreUtil}" do
+    source node['hadoop_spark']['hopsexamples_featurestore_util']['url']
+    owner node['hadoop_spark']['user']
+    group node['hops']['group']
+    mode "1775"
+    action :create
+  end
+
+  hops_hdfs_directory "#{Chef::Config['file_cache_path']}/#{hopsExamplesFeaturestoreUtil}" do
+    action :replace_as_superuser
+    owner node['hadoop_spark']['user']
+    group node['hops']['group']
+    mode "1755"
+    dest "/user/#{node['hadoop_spark']['user']}/#{hopsExamplesFeaturestoreUtil}"
   end
 
   hops_hdfs_directory "#{node['hadoop_spark']['base_dir']}/conf/metrics.properties"  do
